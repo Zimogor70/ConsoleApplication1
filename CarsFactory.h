@@ -25,7 +25,7 @@ class Sedan: public Cars {
  class AdaptTruck : public Cars {
 	 Truck* truck;
  public:
-	 AdaptTruck() { truck = new Truck; };
+	 AdaptTruck(Truck* t) :truck(t) {};
 	 void print() { truck->Describe(); }
  };
 
@@ -35,7 +35,7 @@ class Sedan: public Cars {
 		 if (value == "Седан") return std::make_unique<Sedan>();
 		 if (value == "Хэтчбэк") return std::make_unique<Hatchback>();
 		 if (value == "Кабриолет") return std::make_unique<Convertible>();
-		 if (value == "Грузовик") return std::make_unique<AdaptTruck>();
+		 if (value == "Грузовик") return std::make_unique<AdaptTruck>(new Truck);
 		 throw std::runtime_error("Неверный формат!\n");
 	 }
  };
