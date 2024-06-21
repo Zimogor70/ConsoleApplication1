@@ -32,4 +32,13 @@ setlocale(LC_ALL,"");
                     catch (std::runtime_error& e) {
                         std::cerr << e.what() << "\n";
                     }
+                        try {
+                            string str{ "Грузовик" };
+                            auto c = FactoryCars::GetCars(str);
+                            c->print();
+                        }
+                        catch (std::runtime_error& e) {
+                            std::cerr << e.what() << "\n";
+                        }
+    return 0;
 }

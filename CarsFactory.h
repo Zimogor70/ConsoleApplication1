@@ -6,14 +6,27 @@ public:
 };
 
 class Sedan: public Cars {
-	virtual void print() { cout << "Я автомобиль типа Седан!\n"; };
+	void print() { cout << "Я автомобиль типа Седан!\n"; };
 };
 
  class Hatchback : public Cars {
-	 virtual void print() { cout << "Я автомобиль типа Хэтчбэк!\n"; };
+	 void print() { cout << "Я автомобиль типа Хэтчбэк!\n"; };
  };
+
  class Convertible : public Cars {
-	 virtual void print() { cout << "Я автомобиль типа Кабриолет!\n"; };
+	 void print() { cout << "Я автомобиль типа Кабриолет!\n"; };
+ };
+
+ class Truck {
+ public:
+	 void Describe() { cout << "Я Грузовик"; };
+ };
+
+ class AdaptTruck : public Cars {
+	 Truck* truck;
+ public:
+	 AdaptTruck() { truck = new Truck; };
+	 void print() { truck->Describe(); }
  };
 
  class FactoryCars {
@@ -22,6 +35,10 @@ class Sedan: public Cars {
 		 if (value == "Седан") return std::make_unique<Sedan>();
 		 if (value == "Хэтчбэк") return std::make_unique<Hatchback>();
 		 if (value == "Кабриолет") return std::make_unique<Convertible>();
+		 if (value == "Грузовик") return std::make_unique<AdaptTruck>();
 		 throw std::runtime_error("Неверный формат!\n");
 	 }
  };
+
+
+
